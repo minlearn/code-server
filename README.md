@@ -1,0 +1,1 @@
+this is the code-server lxc app res for [1kdd](https://github.com/minlearn/1kdd)
