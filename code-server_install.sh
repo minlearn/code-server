@@ -1,9 +1,9 @@
 ############
 
+silent() { "$@" >/dev/null 2>&1; }
+
 echo "Installing Dependencies"
-apt-get update &>/dev/null
-apt-get install -y curl &>/dev/null
-apt-get install -y git &>/dev/null
+silent apt-get install -y curl git
 echo "Installed Dependencies"
 
 VERSION=$(curl -s https://api.github.com/repos/coder/code-server/releases/latest |
@@ -27,5 +27,10 @@ echo "Installed Code-Server v${VERSION} on $hostname"
 
 echo -e "${APP} should be reachable by going to the following URL.
          ${BL}http://$IP:8680${CL} \n"
+
+echo "Cleaning up"
+silent apt-get -y autoremove
+silent apt-get -y autoclean
+echo "Cleaned"
 
 ###############
